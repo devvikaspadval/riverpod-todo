@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1068261012720",
+    "project_id": "todo8793riverpod",
+    "storage_bucket": "todo8793riverpod.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068261012720:android:2ff88f6c6a208212c33e35",
+        "android_client_info": {
+          "package_name": "com.example.todayriverpod"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANJ9tYgn-Xt6QA8PQPS5aQ3v8w-oLgWXw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
