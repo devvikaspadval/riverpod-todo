@@ -1,0 +1,54 @@
+name: Android Release (Persist APK)
+
+on:
+  push:
+    branches:
+      - develop
+      - uat
+      - main
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+
+    env:
+      FLUTTER_VERSION: "3.32.7"
+
+    steps:
+      # 1. Checkout source
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Flutter
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 4. Resolve flavor from branch
+
+      # 5. Build APK
+      - name: Build APK
+        run: |
+          flutter build apk \
+            --release \
+            -t lib/main.dart
+
+      # 6. Verify APK exists (fail fast if not)
+      - name: Verify APK output
+        run: |
+          ls -lh build/app/outputs/flutter-apk/
+          test -f build/app/outputs/flutter-apk/app-release.apk
+
+      # 7. Persist APK as artifact
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30
